@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  padding-top: 100px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+header {
+  background: #1e293b;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+header h1 {
+  margin: 1rem;
+  color: #38bdf8;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem;
+  padding: 0;
+}
+
+nav a {
+  color: #f8fafc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #38bdf8;
+}
+
+#hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(to right, #0ea5e9, #0284c7);
+  color: #fff;
+}
+
+section {
+  padding: 4rem 2rem;
+  scroll-margin-top: 20px; /* ヘッダーの高さに応じて調整 */
+}
+
+#works {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+#works h2 {
+  width: 100%;
+  display: block;
+}
+
+.works-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.card {
+  background: #1e293b;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card h3 {
+  margin: 1rem;
+  color: #38bdf8;
+}
+
+.card p {
+  margin: 0 1rem 1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #1e293b;
+  color: #94a3b8;
+}
