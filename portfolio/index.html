@@ -344,7 +344,11 @@
             margin-top: 20px;
         }
 
+        /* リンクタグ用のスタイリング調整 */
         .contact-item {
+            display: block;
+            text-decoration: none;
+            color: inherit;
             background: #f8f9fa;
             padding: 20px;
             border-radius: 10px;
@@ -366,7 +370,7 @@
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 0.3s;
-            z-index: -1;
+            z-index: 1; /* z-indexを調整 */
         }
 
         .contact-item:hover::before {
@@ -376,8 +380,14 @@
 
         .contact-item:hover {
             transform: translateY(-5px) scale(1.05);
-            color: white;
             box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* アイコンとテキストが背景色より前面に出るようにz-indexとpositionを設定 */
+        .contact-icon, .contact-text {
+            position: relative;
+            z-index: 2;
+            transition: color 0.3s ease;
         }
 
         .contact-item:hover .contact-icon,
@@ -530,7 +540,6 @@
             <section class="section">
                 <h2 class="section-title">プロジェクト</h2>
                 <div class="projects-grid">
-                    <!-- 新規追加：住所マッパー -->
                     <div class="project-card">
                         <h3 class="project-title">住所マッパー（チラシ配り効率化）</h3>
                         <p class="project-description">
@@ -543,7 +552,6 @@
                         </div>
                     </div>
 
-                    <!-- 更新：画像認識を用いた異常検知システム -->
                     <div class="project-card">
                         <h3 class="project-title">画像認識を用いた異常検知システム</h3>
                         <p class="project-description">
@@ -556,7 +564,6 @@
                         </div>
                     </div>
 
-                    <!-- 更新：幹事代行ChatBot -->
                     <div class="project-card">
                         <h3 class="project-title">幹事代行ChatBot</h3>
                         <p class="project-description">
@@ -570,7 +577,6 @@
                         </div>
                     </div>
 
-                    <!-- 既存：バイトモチベアプリ -->
                     <div class="project-card">
                         <h3 class="project-title">バイトモチベアプリ</h3>
                         <p class="project-description">
@@ -588,18 +594,21 @@
             <section class="section">
                 <h2 class="section-title">連絡先</h2>
                 <div class="contact-info">
-                    <div class="contact-item">
+                    <!-- hrefにmailto:を追加してメールアプリを起動 -->
+                    <a href="mailto:2401096@s.asojuku.ac.jp" class="contact-item">
                         <div class="contact-icon">📧</div>
-                        <div class="contact-text">2401096@s.asojuku.ac.jp</div>
-                    </div>
-                    <div class="contact-item">
+                        <div class="contact-text">2601910@s.asojuku.ac.jp</div>
+                    </a>
+                    <!-- hrefにtel:を追加して電話アプリを起動 -->
+                    <a href="tel:090-7584-3748" class="contact-item">
                         <div class="contact-icon">📱</div>
                         <div class="contact-text">090-7584-3748</div>
-                    </div>
-                    <div class="contact-item">
+                    </a>
+                    <!-- hrefにURLを追加して別タブでGitHubを開く -->
+                    <a href="https://github.com/beginner19tt" target="_blank" rel="noopener noreferrer" class="contact-item">
                         <div class="contact-icon">🌐</div>
                         <div class="contact-text">https://github.com/beginner19tt</div>
-                    </div>
+                    </a>
                 </div>
             </section>
         </main>
