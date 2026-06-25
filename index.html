@@ -6,401 +6,14 @@
     <title>新屋徳人 - Portfolio</title>
     <meta name="description" content="麻生情報ビジネス専門学校 AI・IoT専攻 3年生 新屋徳人のポートフォリオ。身近な課題を技術で解決するエンジニア。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg:       #f4f4fb;
-            --bg2:      #ffffff;
-            --bg3:      #eeeef8;
-            --border:   rgba(100,80,200,0.1);
-            --border2:  rgba(100,80,200,0.2);
-            --accent:   #6644e8;
-            --accent2:  #7c5cfc;
-            --accent3:  #a78bfa;
-            --green:    #059669;
-            --amber:    #d97706;
-            --red:      #dc2626;
-            --blue:     #2563eb;
-            --text:     #1a1230;
-            --text2:    #4a4470;
-            --text3:    #8880aa;
-            --radius:   14px;
-            --radius-sm: 8px;
-        }
-
-        * { margin:0; padding:0; box-sizing:border-box; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        /* ---- スクロールバー ---- */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #e8e8f4; }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
-
-        /* ---- プログレスバー ---- */
-        .progress {
-            position: fixed; top: 0; left: 0; height: 2px; width: 100%;
-            background: transparent; z-index: 999;
-        }
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--accent2), #e879f9);
-            transform: scaleX(0); transform-origin: left;
-            transition: transform 0.1s;
-        }
-
-        /* ---- ノイズオーバーレイ ---- */
-        body::before {
-            content: '';
-            position: fixed; inset: 0; z-index: 0; pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-            opacity: 0.4;
-        }
-
-        /* ---- グロー背景 ---- */
-        .glow-orb {
-            position: fixed; border-radius: 50%;
-            filter: blur(120px); pointer-events: none; z-index: 0;
-        }
-        .glow-orb-1 {
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(102,68,232,0.10) 0%, transparent 70%);
-            top: -100px; right: -100px;
-        }
-        .glow-orb-2 {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(124,92,252,0.07) 0%, transparent 70%);
-            bottom: 100px; left: -80px;
-        }
-
-        /* ---- メインレイアウト ---- */
-        .wrapper {
-            position: relative; z-index: 1;
-            max-width: 900px; margin: 0 auto; padding: 0 24px 80px;
-        }
-
-        /* ---- ヒーローセクション ---- */
-        .hero {
-            padding: 80px 0 60px;
-            display: flex; flex-direction: column; align-items: center;
-            text-align: center; gap: 0;
-        }
-
-        .avatar-ring {
-            position: relative; margin-bottom: 28px;
-            width: 140px; height: 140px;
-        }
-        .avatar-ring::before {
-            content: '';
-            position: absolute; inset: -3px; border-radius: 50%;
-            background: conic-gradient(from 0deg, var(--accent), #e879f9, var(--accent2), var(--accent));
-            animation: spin-slow 6s linear infinite;
-            z-index: 0;
-        }
-        .avatar-ring::after {
-            content: '';
-            position: absolute; inset: -1px; border-radius: 50%;
-            background: var(--bg); z-index: 1;
-        }
-        .avatar {
-            position: relative; z-index: 2;
-            width: 134px; height: 134px; border-radius: 50%;
-            object-fit: cover; object-position: center top;
-            border: 2px solid var(--bg);
-            display: block; margin: 3px auto 0;
-        }
-
-        .status-dot {
-            position: absolute; bottom: 6px; right: 6px; z-index: 3;
-            width: 16px; height: 16px; border-radius: 50%;
-            background: var(--green); border: 2px solid var(--bg);
-            box-shadow: 0 0 8px var(--green);
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-
-        .hero-name {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700; letter-spacing: -0.02em;
-            line-height: 1.1; margin-bottom: 10px;
-            background: linear-gradient(135deg, #1a1230 30%, var(--accent));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero-role {
-            font-size: 0.95em; color: var(--text2); margin-bottom: 6px;
-            font-weight: 400; letter-spacing: 0.01em;
-        }
-        .hero-quote {
-            font-size: 0.85em; color: var(--text3); margin-bottom: 28px;
-            font-style: italic; letter-spacing: 0.02em;
-        }
-        .hero-chips {
-            display: flex; flex-wrap: wrap; gap: 8px;
-            justify-content: center; margin-bottom: 32px;
-        }
-        .chip {
-            padding: 5px 14px; border-radius: 99px;
-            font-size: 0.78em; font-weight: 600; letter-spacing: 0.04em;
-            border: 1px solid var(--border2);
-            background: var(--bg3); color: var(--text2);
-        }
-        .chip.accent { background: rgba(124,92,252,0.15); color: var(--accent2); border-color: rgba(124,92,252,0.3); }
-        .chip.green  { background: rgba(52,211,153,0.12); color: var(--green);   border-color: rgba(52,211,153,0.3); }
-
-        .hero-btns {
-            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
-        }
-        .btn-primary {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: var(--accent); color: white;
-            padding: 10px 22px; border-radius: var(--radius-sm);
-            font-size: 0.875em; font-weight: 600; text-decoration: none;
-            transition: all 0.2s ease;
-            box-shadow: 0 0 20px rgba(124,92,252,0.3);
-        }
-        .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 4px 24px rgba(124,92,252,0.45); }
-        .btn-ghost {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: transparent; color: var(--text2);
-            padding: 10px 22px; border-radius: var(--radius-sm);
-            font-size: 0.875em; font-weight: 500; text-decoration: none;
-            border: 1px solid var(--border2);
-            transition: all 0.2s ease;
-        }
-        .btn-ghost:hover { border-color: var(--accent); color: var(--accent2); transform: translateY(-2px); }
-
-        /* ---- セクション共通 ---- */
-        .section { margin-bottom: 56px; }
-
-        .section-header {
-            display: flex; align-items: center; gap: 14px;
-            margin-bottom: 24px;
-        }
-        .section-icon {
-            width: 36px; height: 36px; border-radius: 10px;
-            background: rgba(124,92,252,0.15);
-            border: 1px solid rgba(124,92,252,0.25);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 16px; flex-shrink: 0;
-        }
-        .section-title {
-            font-size: 1.15em; font-weight: 700; color: var(--text);
-            letter-spacing: -0.01em;
-        }
-
-        /* ---- カード ---- */
-        .card {
-            background: var(--bg2); border: 1px solid var(--border);
-            border-radius: var(--radius); padding: 22px 24px;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        .card:hover { border-color: var(--border2); box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
-
-        /* ---- 自己紹介 ---- */
-        .about-text {
-            font-size: 0.95em; color: var(--text2); line-height: 1.85;
-        }
-        .about-text strong { color: var(--text); font-weight: 600; }
-
-        /* ---- タイムライン ---- */
-        .timeline { position: relative; padding-left: 20px; }
-        .timeline::before {
-            content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px;
-            width: 1px; background: linear-gradient(to bottom, var(--accent), transparent);
-        }
-        .tl-item { position: relative; margin-bottom: 28px; padding-left: 18px; }
-        .tl-item:last-child { margin-bottom: 0; }
-        .tl-dot {
-            position: absolute; left: -14px; top: 5px;
-            width: 10px; height: 10px; border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 8px rgba(124,92,252,0.6);
-        }
-        .tl-date {
-            font-size: 0.73em; font-weight: 700; color: var(--accent2);
-            letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 3px;
-        }
-        .tl-title { font-size: 0.95em; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-        .tl-body  { font-size: 0.88em; color: var(--text2); line-height: 1.7; }
-        .tl-badge {
-            display: inline-flex; align-items: center; gap: 5px;
-            margin-top: 7px; padding: 3px 10px; border-radius: 99px;
-            font-size: 0.76em; font-weight: 600;
-            background: rgba(124,92,252,0.12); color: var(--accent2);
-            border: 1px solid rgba(124,92,252,0.25);
-        }
-
-        /* ---- スタックタグ ---- */
-        .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
-        .tag {
-            padding: 4px 12px; border-radius: 99px;
-            font-size: 0.78em; font-weight: 500;
-            background: var(--bg3); color: var(--text2);
-            border: 1px solid var(--border2);
-            transition: all 0.15s;
-        }
-        .tag:hover { border-color: var(--accent); color: var(--accent2); }
-
-        /* ---- 資格グリッド ---- */
-        .cert-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-        }
-        .cert-card {
-            background: var(--bg3); border: 1px solid var(--border);
-            border-radius: var(--radius-sm); padding: 14px 16px;
-            transition: all 0.2s;
-        }
-        .cert-card:hover { border-color: var(--green); transform: translateY(-2px); }
-        .cert-status {
-            font-size: 0.7em; font-weight: 700; letter-spacing: 0.05em;
-            color: var(--green); margin-bottom: 4px;
-            display: flex; align-items: center; gap: 4px;
-        }
-        .cert-name  { font-size: 0.88em; font-weight: 600; color: var(--text); }
-        .cert-date  { font-size: 0.76em; color: var(--text3); margin-top: 2px; }
-
-        .cert-card.planned:hover { border-color: var(--amber); }
-        .cert-card.planned .cert-status { color: var(--amber); }
-
-        /* ---- プロジェクト ---- */
-        .proj-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 14px;
-        }
-        .proj-card {
-            background: var(--bg2); border: 1px solid var(--border);
-            border-radius: var(--radius); padding: 20px 22px;
-            position: relative; overflow: hidden;
-            transition: all 0.25s;
-        }
-        .proj-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, var(--accent), #e879f9);
-            opacity: 0; transition: opacity 0.25s;
-        }
-        .proj-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
-        .proj-card:hover::before { opacity: 1; }
-        .proj-badge {
-            display: inline-flex; align-items: center; gap: 5px;
-            font-size: 0.7em; font-weight: 700; letter-spacing: 0.04em;
-            padding: 3px 9px; border-radius: 99px; margin-bottom: 10px;
-        }
-        .badge-solo  { background: rgba(52,211,153,0.1); color: var(--green);  border: 1px solid rgba(52,211,153,0.25); }
-        .badge-team  { background: rgba(96,165,250,0.1); color: var(--blue);   border: 1px solid rgba(96,165,250,0.25); }
-        .badge-wip   { background: rgba(251,191,36,0.1); color: var(--amber);  border: 1px solid rgba(251,191,36,0.25); }
-        .proj-title  { font-size: 1em; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-        .proj-desc   { font-size: 0.865em; color: var(--text2); line-height: 1.65; margin-bottom: 12px; }
-        .proj-result {
-            display: flex; align-items: flex-start; gap: 8px;
-            background: rgba(124,92,252,0.08); border: 1px solid rgba(124,92,252,0.2);
-            border-radius: var(--radius-sm); padding: 8px 12px;
-            font-size: 0.83em; color: var(--accent2); font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .proj-techs { display: flex; flex-wrap: wrap; gap: 5px; }
-        .tech-chip {
-            padding: 2px 9px; border-radius: 99px;
-            font-size: 0.73em; font-weight: 600;
-            background: rgba(124,92,252,0.1); color: var(--accent2);
-            border: 1px solid rgba(124,92,252,0.2);
-        }
-
-        /* ---- ビジョンカード ---- */
-        .vision-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px;
-        }
-        .vision-card {
-            background: var(--bg2); border: 1px solid var(--border);
-            border-radius: var(--radius); padding: 20px;
-            transition: all 0.2s;
-        }
-        .vision-card:hover { border-color: var(--border2); transform: translateY(-3px); }
-        .vision-emoji { font-size: 1.6em; margin-bottom: 10px; }
-        .vision-title { font-size: 0.9em; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-        .vision-body  { font-size: 0.84em; color: var(--text2); line-height: 1.65; }
-
-        /* ---- 連絡先 ---- */
-        .contact-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-        }
-        .contact-card {
-            background: var(--bg2); border: 1px solid var(--border);
-            border-radius: var(--radius); padding: 20px;
-            text-decoration: none; color: inherit;
-            display: flex; flex-direction: column; align-items: center; text-align: center;
-            transition: all 0.2s; position: relative; overflow: hidden;
-        }
-        .contact-card::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg, rgba(124,92,252,0.08), rgba(232,121,249,0.06));
-            opacity: 0; transition: opacity 0.2s;
-        }
-        .contact-card:hover { border-color: rgba(124,92,252,0.4); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-        .contact-card:hover::before { opacity: 1; }
-        .contact-icon-wrap {
-            position: relative; z-index: 1;
-            width: 44px; height: 44px; border-radius: 12px;
-            background: rgba(124,92,252,0.12); border: 1px solid rgba(124,92,252,0.2);
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 12px; color: var(--accent2);
-            transition: all 0.2s;
-        }
-        .contact-card:hover .contact-icon-wrap { background: rgba(124,92,252,0.2); }
-        .contact-label { position: relative; z-index: 1; font-size: 0.7em; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; }
-        .contact-val   { position: relative; z-index: 1; font-size: 0.85em; font-weight: 600; color: var(--text2); margin-bottom: 8px; word-break: break-all; }
-        .contact-cta   { position: relative; z-index: 1; font-size: 0.76em; color: var(--accent2); font-weight: 500; }
-        .contact-card:hover .contact-label,
-        .contact-card:hover .contact-val,
-        .contact-card:hover .contact-cta { color: var(--accent2); }
-        .contact-card:hover .contact-val { color: var(--text); }
-
-        /* ---- フッター ---- */
-        .footer {
-            text-align: center; padding: 32px 0 0;
-            border-top: 1px solid var(--border);
-            font-size: 0.8em; color: var(--text3);
-        }
-
-        /* ---- アニメーション ---- */
-        @keyframes spin-slow { to { transform: rotate(360deg); } }
-        @keyframes pulse-dot {
-            0%,100% { box-shadow: 0 0 6px var(--green); }
-            50%      { box-shadow: 0 0 14px var(--green), 0 0 28px rgba(52,211,153,0.4); }
-        }
-        @keyframes fadeUp {
-            from { opacity:0; transform: translateY(24px); }
-            to   { opacity:1; transform: translateY(0); }
-        }
-
-        .fade-up { opacity:0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
-        .fade-up.visible { opacity:1; transform: translateY(0); }
-
-        /* ---- レスポンシブ ---- */
-        @media (max-width: 640px) {
-            .wrapper { padding: 0 16px 60px; }
-            .hero { padding: 60px 0 40px; }
-            .proj-grid { grid-template-columns: 1fr; }
-            .vision-grid { grid-template-columns: 1fr; }
-            .cert-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<canvas id="particle-canvas"></canvas>
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
 <div class="progress"><div class="progress-bar" id="pbar"></div></div>
 <div class="glow-orb glow-orb-1"></div>
 <div class="glow-orb glow-orb-2"></div>
@@ -414,8 +27,10 @@
             <div class="status-dot"></div>
         </div>
         <h1 class="hero-name">新屋 徳人</h1>
-        <p class="hero-role">麻生情報ビジネス専門学校 AI・IoT専攻 3年生</p>
-        <p class="hero-quote">"常に新しい技術に貪欲に、目の前の誰かのためにコードを書く。"</p>
+        <div class="hero-role-wrap">
+            <span class="hero-role" data-text="麻生情報ビジネス専門学校 AI・IoT専攻 3年生">麻生情報ビジネス専門学校 AI・IoT専攻 3年生</span>
+        </div>
+        <p class="hero-quote">&quot;常に新しい技術に貪欲に、目の前の誰かのためにコードを書く。&quot;</p>
         <div class="hero-chips">
             <span class="chip accent">AI / IoT</span>
             <span class="chip accent">Python</span>
@@ -561,6 +176,7 @@
         </div>
         <div class="proj-grid">
             <div class="proj-card">
+                <div class="scan-line"></div>
                 <span class="proj-badge badge-solo">個人開発</span>
                 <div class="proj-title">住所マッパー（チラシ配り効率化ツール）</div>
                 <div class="proj-desc">アルバイト先で200〜300件のチラシ配布ルートを手作業で整理する非効率な業務を発見。PDFから住所を読み取り、町名ごとにグループ化して最短ルートをGoogle Maps・Yahoo!カーナビ・Apple Mapsへ出力するツールを自発的に開発。</div>
@@ -573,6 +189,7 @@
                 </div>
             </div>
             <div class="proj-card">
+                <div class="scan-line"></div>
                 <span class="proj-badge badge-team">チーム・リーダー</span>
                 <div class="proj-title">画像認識を用いた不良品検知システム</div>
                 <div class="proj-desc">2年生のチーム開発でリーダーを担当。ResNet50・VGG16を活用した異常検知AIを構築。「1人1モデルを作成し最高精度を提出する」戦略でチームの成果を最大化。進捗確認のルール化やタスク分散など、マネジメントの実践的な学びを得た。</div>
@@ -584,6 +201,7 @@
                 </div>
             </div>
             <div class="proj-card">
+                <div class="scan-line"></div>
                 <span class="proj-badge badge-team">チーム開発</span>
                 <div class="proj-title">幹事代行 LINE ChatBot</div>
                 <div class="proj-desc">人数・場所・予算などの条件をLINEで入力すると、現在地周辺の飲食店を自動提案するBot。LINE Messaging API・Gemini API・ホットペッパーAPIをAWS上で連携。API仕様変更やWeb上にない店舗情報の処理など、リアルな不確実性への対処を経験。</div>
@@ -595,6 +213,7 @@
                 </div>
             </div>
             <div class="proj-card">
+                <div class="scan-line"></div>
                 <span class="proj-badge badge-wip">開発中</span>
                 <div class="proj-title">バイトモチベアプリ</div>
                 <div class="proj-desc">学生がアルバイトの給与を管理し、貯金目標に向けたモチベーションを維持するためのWebアプリ。自身のニーズから着想し、Python・Flask・SQLを活用してバックエンドを含めた本格開発に継続挑戦中。</div>
@@ -605,6 +224,7 @@
                 </div>
             </div>
             <div class="proj-card">
+                <div class="scan-line"></div>
                 <span class="proj-badge badge-solo">個人開発</span>
                 <div class="proj-title">オラクルカード（占いアプリ）</div>
                 <div class="proj-desc">カメラ画像を分割するのではなく、合成された写真をそのまま解析するシンプルなロジックを採用したプロトタイプ（2025年7月制作）。複雑な処理を避け、最小構成で動くものを作るという設計思想を実践。</div>
@@ -668,24 +288,11 @@
     </section>
 
     <footer class="footer fade-up">
-        <p>© 2025 Norito Shinya — Built with curiosity and code.</p>
+        <p>&copy; 2025 Norito Shinya &mdash; Built with curiosity and code.</p>
     </footer>
 
 </div>
 
-<script>
-    // スクロールプログレスバー
-    window.addEventListener('scroll', () => {
-        const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-        document.getElementById('pbar').style.transform = 'scaleX(' + pct + ')';
-    });
-
-    // スクロールイン
-    const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
-
-    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
-</script>
+<script src="script.js"></script>
 </body>
 </html>
