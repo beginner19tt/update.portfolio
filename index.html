@@ -175,12 +175,63 @@
             <h2 class="section-title">プロジェクト</h2>
         </div>
         <div class="proj-grid">
-            <div class="proj-card">
+            <div class="proj-card proj-card--featured">
                 <div class="scan-line"></div>
                 <span class="proj-badge badge-solo">個人開発</span>
                 <div class="proj-title">住所マッパー（チラシ配り効率化ツール）</div>
-                <div class="proj-desc">アルバイト先で200〜300件のチラシ配布ルートを手作業で整理する非効率な業務を発見。PDFから住所を読み取り、町名ごとにグループ化して最短ルートをGoogle Maps・Yahoo!カーナビ・Apple Mapsへ出力するツールを自発的に開発。</div>
+                <div class="proj-desc">アルバイト先で200〜300件のチラシ配布ルートを手作業で整理する非効率な業務を自発的に発見。PDFから住所を自動読み取りし、町名ごとにグループ化・最短ルートを算出、QRコードでそのままナビアプリに飛ばせるツールをゼロから開発。</div>
                 <div class="proj-result">⚡ 平均5分かかっていた作業を10秒に短縮</div>
+
+                <!-- 3ステップフロー -->
+                <div class="news-flow">
+                    <div class="flow-step">
+                        <div class="flow-step-num">①</div>
+                        <div class="flow-step-icon">📄</div>
+                        <div class="flow-step-title">PDFを読み込む</div>
+                        <div class="flow-step-desc">配布リストのPDFから<br>住所を自動抽出</div>
+                        <div class="flow-step-file">PDF.js</div>
+                    </div>
+                    <div class="flow-arrow">›</div>
+                    <div class="flow-step">
+                        <div class="flow-step-num">②</div>
+                        <div class="flow-step-icon">🗂️</div>
+                        <div class="flow-step-title">町名でグループ化</div>
+                        <div class="flow-step-desc">住所を町名単位で整理し<br>最短ルートを算出</div>
+                        <div class="flow-step-file">mapper.js</div>
+                    </div>
+                    <div class="flow-arrow">›</div>
+                    <div class="flow-step">
+                        <div class="flow-step-num">③</div>
+                        <div class="flow-step-icon">🗺️</div>
+                        <div class="flow-step-title">ナビアプリへ出力</div>
+                        <div class="flow-step-desc">QRコードで3つのナビアプリに<br>ワンタップで転送</div>
+                        <div class="flow-step-file">QRCode.js</div>
+                    </div>
+                </div>
+
+                <!-- 対応ナビアプリ -->
+                <div class="news-sources">
+                    <div class="sources-label">対応ナビアプリ</div>
+                    <div class="sources-grid">
+                        <div class="source-item"><span class="source-name">Google Maps</span><span class="source-count">✓</span></div>
+                        <div class="source-item"><span class="source-name">Yahoo!カーナビ</span><span class="source-count">✓</span></div>
+                        <div class="source-item"><span class="source-name">Apple Maps</span><span class="source-count">✓</span></div>
+                    </div>
+                    <div class="sources-total">QRコード読み取りだけで即ナビ起動</div>
+                </div>
+
+                <!-- メタ情報 -->
+                <div class="news-meta-row">
+                    <div class="news-meta-item">
+                        <span class="news-meta-label">📦 対象データ</span>
+                        <span class="news-meta-value">200〜300件の住所リスト（PDF）</span>
+                    </div>
+                    <div class="news-meta-item">
+                        <span class="news-meta-label">⚡ 削減効果</span>
+                        <span class="news-meta-value">5分 → 10秒（約30倍の時間短縮）</span>
+                    </div>
+                </div>
+
                 <div class="proj-techs">
                     <span class="tech-chip">JavaScript</span>
                     <span class="tech-chip">PDF.js</span>
@@ -357,7 +408,7 @@
     </section>
 
     <footer class="footer fade-up">
-        <p>&copy; 2025 Norito Shinya &mdash; Built with curiosity and code.</p>
+        <p>&copy; 2025 Tokuto Shinya &mdash; Built with curiosity and code.</p>
     </footer>
 
 </div>
